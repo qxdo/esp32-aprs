@@ -1,6 +1,6 @@
 # ESP32-APRS
 ## Previous On Usage
-Firstly, you need to be a ham, know detail in <a href="htts:'/">Here </a>.
+Firstly, you need to be a ham, know detail in my blog, under the "ham" tag, the post might be not write :) <a href="https://blog.bh4fwa.com">Here </a>.
 ### This is a APRS Device use ESP32, it was designed as a environment and location tracker device that you can carry every day with just week or month charge or change battery. so other people can know your environment change history, and your location change history, and know your history track.
 
 #### 这是一个使用ESP32制作的APRS设备,它被设计作为一个环境&位置跟踪器,可以每日携带而仅用每周or每月充电抑或是更换电池,这样别人就可以知道你的环境变化历史,以及你的位置变化历史,以及你的历史轨迹.
