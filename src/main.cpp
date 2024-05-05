@@ -2,12 +2,12 @@
 #include <Arduino.h>
 #include <WiFi.h>
 const char* ssid = "PDCN"; // ??????
-const char* password = "13037679105"; // ??????
+const char* password = "xxxx"; // ??????
 
 const char *host = "asia.aprs2.net";
 const int port = 14580;
 bool auth = false;
-const char *logininfo = "user BH4FWA pass 21165 vers ESP32Weather 0.0.1 filter m/500\r\n";
+const char *logininfo = "user BH4FWA pass XXXXX vers ESP32Weather 0.0.1 filter m/500\r\n";
 char senddata[150] = {0};
 
 
