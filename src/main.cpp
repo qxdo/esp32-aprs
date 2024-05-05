@@ -58,8 +58,8 @@ void startConnect(){
           //            -- p000：前24小时内的降雨量（0.01英寸）
           //            -- h53：湿度（00％= 100％）
           //            -- b10020：气压（0.1 hpa）
-          // 
-          snprintf(senddata, sizeof(senddata), "BH4FWA-0>AP32RS,qAS,:=3113.69N/12131.31E_000/000g000t0%dr000p000h%db09691 qxdo's APRS use ESP32 144.8Mhz. 3.3V\r\n", temperaturef, humidity);
+          // 121.31,31.14
+          snprintf(senddata, sizeof(senddata), "BH4FWA-0>AP32RS,qAS,:=3114.00N/12131.00E_000/000g000t0%dr000p000h%db09691 qxdo's APRS use ESP32 144.8Mhz. 3.3V\r\n", temperaturef, humidity);
           client.print(senddata);// send to server:port
           Serial.print("APRS POST:");
           Serial.println(senddata);
