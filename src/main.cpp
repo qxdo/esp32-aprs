@@ -1,24 +1,24 @@
 #include <driver/ledc.h> // LEDC support
 #include <Arduino.h>
 #include <WiFi.h>
-const char* ssid = "PDCN"; // SSID
-const char* password = "xxxx"; // PASSWORD
+const char* ssid = "PDCN"; // 密码
+const char* password = "13037679105"; // 密码
 
 const char *host = "asia.aprs2.net";
 const int port = 14580;
 bool auth = false;
-const char *logininfo = "user BH4FWA pass XXXXX vers ESP32Weather 0.0.1 filter m/500\r\n";
+const char *logininfo = "user BH4FWA pass 21165 vers ESP32Weather 0.0.1 filter m/500\r\n";
 char senddata[150] = {0};
-
 
 
 WiFiClient client;
 
-void startConnect() {
-  while(!client.connected()) {
-    if(!client.connect(host, port)) {
-        Serial.println("wait connection.to server ......");
-    }
+void startConnect(){
+
+  while(!client.connected()){
+      if(!client.connect(host, port)){
+          Serial.println("wait connection.to server ......");
+      }
   }
   while (client.connected()){
       if (client.available()) {
@@ -47,25 +47,24 @@ void startConnect() {
           int temperaturef =  86;// dht.toFahrenheit(temperature);
           //
           //            -- c000s000g000t086r000p000h53b10020
-          //            -- ????35???????????????OD,OA?
+          //            -- 每秒输出35个字节，包括数据末尾的换行符（OD,OA）
           //
-          //            -- ?????
-          //            -- c000???????????
-          //            -- s000??1?????????????
-          //            -- g000??5???????????????
-          //            -- t086???(??)
-          //            -- r000???????(0.01??)
-          //            -- p000??24???????(0.01??)
-          //            -- h53???(00?= 100?)
-          //            -- b10020???(0.1 hpa)
+          //            -- 数据解析：
+          //            -- c000：风向角度，单位：度。
+          //            -- s000：前1分钟风速，单位：英里每小时
+          //            -- g000：前5分钟最高风速，单位：英里每小时
+          //            -- t086：温度（华氏）
+          //            -- r000：前一小时雨量（0.01英寸）
+          //            -- p000：前24小时内的降雨量（0.01英寸）
+          //            -- h53：湿度（00％= 100％）
+          //            -- b10020：气压（0.1 hpa）
           // 
-          snprintf(senddata, sizeof(senddata), "BH4FWA-0>AP32RS,qAS,:=3113.69N/12131.31E_000/000g000t0%dr000p000h%db09691 qxdo's APRS use ESP32 144.800Mhz. 3.3V\r\n", temperaturef, humidity);
+          snprintf(senddata, sizeof(senddata), "BH4FWA-0>AP32RS,qAS,:=3113.69N/12131.31E_000/000g000t0%dr000p000h%db09691 qxdo's APRS use ESP32 144.8Mhz. 3.3V\r\n", temperaturef, humidity);
           client.print(senddata);// send to server:port
           Serial.print("APRS POST:");
           Serial.println(senddata);
         }
       }
-      
   }
 }
 
@@ -87,7 +86,7 @@ void setup() {
         Serial.println("Connecting to WiFi...");
     }
     Serial.println("WiFi connected");
-    Serial.println("IP address: ");
+    Serial.println("IP address:");
     Serial.println(WiFi.localIP());  
 }
 
